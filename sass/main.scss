@@ -1,0 +1,1677 @@
+@import 'vendor/bootstrap';
+@import '_bootstrap4-style-alignment';
+@import 'vendor/flickity';
+@import 'vendor/animate';
+@import 'vendor/font-awesome';
+@import 'lightbox';
+@import 'development';
+
+/*-----------------------------------------------------------------------------------
+
+  Theme Name: Spark1
+  Theme URI: http://www.patrickhurley.co.uk/themes/spark1
+  Description: A theme for everyone.
+  Author: Patrick Hurley
+  Author URI: http://www.patrickhurley.co.uk
+  Version: 1.0
+  License: GNU General Public License version 3.0
+  License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+-----------------------------------------------------------------------------------
+
+  1.  Colours and Fonts
+  2.  General Formatting
+  3.  Feature Boxes
+  4.  Navigation
+  5.  Comments
+  6.  Portfolio
+  7.  Blog
+  8.  Pages
+  9.  Footer
+  10. Headhesive
+  11. Flicker Carousel
+  12. Hover Effect
+  13. Isotope
+  14. Back to Top
+  
+-----------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
+/*  1.  Colours and Fonts
+/*-----------------------------------------------------------------------------------*/
+
+/* Colour Palette */
+$main-accent: #e968da;
+$main-dark: #1c1c1c;
+$main-grey: #eee;
+$shade: #e3e3e3;
+
+.shade-1 {
+  background: $shade;
+}
+.shade-2 {
+  background: lighten($shade, 4%);
+}
+.shade-3 {
+  background: lighten($shade, 6%);
+}
+.shade-4 {
+  background: lighten($shade, 8%);
+}
+
+.faded {
+  opacity: 0.9;
+}
+
+/* Fonts */
+@font-face {
+    font-family: Raleway-Regular;
+    src: url('../fonts/Raleway-Regular.ttf');
+}
+
+@font-face {
+    font-family: Raleway-Medium;
+    src: url('../fonts/Raleway-Medium.ttf');
+}
+
+@font-face {
+    font-family: Raleway-Bold;
+    src: url('../fonts/Raleway-Bold.ttf');
+}
+
+@font-face {
+    font-family: OpenSans-Light;
+    src: url('../fonts/OpenSans-Light.ttf');
+}
+
+$font-heading-main: Raleway-Medium;
+$font-heading-main-light: Raleway-Regular;
+$font-heading-main-bold: Raleway-Bold;
+$font-heading-sub: OpenSans-Light;
+$font-standard: OpenSans-Light;
+
+h1,h2,h3,h4,h5 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h1,h2 {
+  font-family: $font-heading-main-bold;
+}
+
+h3,h4 {
+  font-family: $font-heading-sub;
+}
+
+h1 {
+  font-size: 35px;
+}
+h2 {
+  font-size: 35px;
+}
+h3 {
+  font-size: 22px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h3 .triangle-dot {
+  color: $main-accent;
+  font-size: 20px;
+}
+
+p, a, li {
+  font-family: $font-standard;
+  font-size: 16px;
+}
+
+a {
+  color: #000;
+  &:hover, &:active, &:visited, &:focus {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  2.  General Formatting
+/*-----------------------------------------------------------------------------------*/
+// div {
+//   border: 1px solid;
+// }
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+// possible solution for 1px gap
+.img-fixed {
+  overflow: hidden;
+  text-align: center;
+  height: 300px;
+  width: 100%;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  max-width: none;
+  position: relative;
+  left: 0;
+}
+
+// Make col-xs-12 full width on xs screen
+@mixin xs-fullwidth {
+    .col-xs-12 {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+}
+
+// Add 30px padding-top and padding-bottom
+.container-padding {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.no-padding {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.no-padding-top {
+  padding-top: 0px !important;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0px !important;
+}
+
+/* Buttons */
+@mixin standard-btn {
+  .btn {
+    padding: 8px;
+    color: #fff;
+    background-color: $main-accent;
+    letter-spacing: 4px;
+    border-radius: 0px;
+    margin-top: 10px;
+    float: right;
+    min-width: 100px;
+    @media(max-width: $screen-xs-max){
+      width: 100%;
+
+    }
+  }
+  .btn-default:hover {
+    background-color: lighten($main-accent, 10%);
+  }
+} 
+
+
+/* Headings */
+.title-block {
+  display: block;
+  padding-bottom: 30px;
+
+  p {
+    margin: 0px;
+  }
+  hr {
+    width: 60px;
+    border-top: 2px solid $main-accent;
+    margin: 20px 0;
+  }
+  .title-upper {
+    margin-bottom: 5px;
+  }
+}
+
+.title-block.text-center hr {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title-block.text-sm-left hr {
+  @media(min-width: $screen-sm-min){
+    margin: 20px 0;
+  }
+}
+
+.title-block.text-sm-center hr {
+  @media(min-width: $screen-sm-min){
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.title-block.text-md-left hr {
+  @media(min-width: $screen-md-min){
+    margin: 20px 0;
+  }
+}
+
+.title-block.text-md-center hr {
+  @media(min-width: $screen-md-min){
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.title-block.text-lg-left hr {
+  @media(min-width: $screen-lg-min){
+    margin: 20px 0;
+  }
+}
+
+.title-block.text-lg-center hr {
+  @media(min-width: $screen-lg-min){
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.title-outline {
+  margin: 20px 0;
+  padding: 10px 0;
+  border: 1px solid lighten($main-accent, 20%);
+  i {
+    font-size: 20px;
+    color: $main-accent;
+  }
+}
+
+/* Circle Cropper */
+.circle-cropper {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 100%;
+}
+
+/* Circle icons */
+.small_box_shadow {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+}
+
+.circle_icon {
+  display: inline-block;
+  color: #fff;
+  font-size: 14px;
+  background: $main-accent;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  margin-top: 8px;
+}
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 99;
+}
+
+#preloader-status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-image: url('../img/icon/loading.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  /* is width and height divided by two */
+  margin: -100px 0 0 -100px;
+}
+
+/* Parallax */
+.parallax-container {
+  position: relative;
+  transition: 0s linear;
+  transition-property: background-position;
+}
+
+/* Tag Box */
+.tagbox {
+  display: inline-block;
+    a {
+    display: block;
+    float: left;
+    color: #000;
+    letter-spacing: 2px;
+    border: 1px solid #ababab;
+    padding: 7px 12px;
+    margin: 0 10px 10px 0;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background: $main-accent;
+      color: #fff;
+      border-color: $main-accent;
+    }
+  }
+}
+
+/* Widgets */
+.widget {
+  margin-bottom: 40px;
+  @media(max-width: $screen-xs-max){
+      margin-bottom: 60px;
+    }
+  h3 {
+    margin-top: 0;
+  }  
+  li {
+    margin-bottom: 15px;
+    a:hover {
+      color: $main-accent;
+    }
+  }
+}
+
+.widget-title {
+  display: block;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin-bottom: 30px;
+  font-family: $font-heading-main;
+  &::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: $main-accent;
+    margin-top: 20px;
+  }  
+}
+
+/* Full Image Header */
+// modernizr check, uses object-fit if available
+.page__featured-image {
+  max-height: 600px;
+}
+
+.page {
+ &__image-container {
+  min-height: 300px;
+  width: 100%;
+  z-index: 9;
+
+  &.compat-object-fit {
+   background-size: cover;
+   background-position: center center;
+
+   .page__featured-image { // hide image if object fit is not supported - opacity to 0 for the link area
+    opacity: 0;
+   }
+  }
+ }
+
+ &__featured-image {
+  min-height: 300px;
+  width: 100%;
+  object-fit: cover;
+ }
+}
+
+/* Form Inputs */
+input:placeholder-shown, textarea:placeholder-shown {
+  color: #858585;
+}
+
+%form-control-general {
+  width: 100%;
+  border: 1px solid #d2d2d2;
+  box-shadow: none;
+  padding: 10px;
+  color: #000;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.form-control-input {
+  @extend %form-control-general;
+  height: 50px;
+  margin-bottom: 10px;
+  &:focus {border: 1px solid #333333}
+}
+
+.form-control-text {
+  @extend %form-control-general;
+  &:focus {border: 1px solid #333333}
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  3.  Feature Boxes
+/*-----------------------------------------------------------------------------------*/
+.feature-box {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  clear: both;
+}
+
+.feature-title-thin {
+  max-width: 400px;
+  margin: 0 auto;  
+}
+
+.feature-color {
+  background: $main-grey;
+}
+
+.feature-bgimage {
+  background: center center no-repeat;
+  background-size: cover;
+}
+
+.feature-parallax {
+  background: center center no-repeat;
+  background-size: cover;
+  @media(max-width: $screen-xs-max){
+    background-size: 300%;
+  }
+  @media(min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+    background-size: 150%;
+  }
+}
+
+.feature-col {
+
+  i {
+    font-size: 40px;
+  }
+  h3 {
+    margin-top: 20px;
+  }
+  p {
+    margin-top: 15px;
+    color: #666666;
+  }
+  @media(max-width: $screen-xs-max){
+    text-align: center;
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+    p {
+      max-width: 300px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
+  }
+  .shade-1,.shade-2,.shade-3,.shade-4 {
+    padding: 100px 50px;
+  }
+}
+
+.feature-4col {
+  @media(max-width: $screen-xs-max){
+    padding-top: 50px;
+    padding-bottom: 30px;
+    .col-sm-3 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.feature-people {
+  h3 {
+    margin-top: 25px;
+  }
+  p {
+    margin-top: 20px;
+  }
+}
+
+.feature-quote {
+  position: relative;
+}
+
+.quote-image {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.quote-name, .quote-occupation {
+  font-size: 18px;
+  text-align: center;
+  line-height: 15px;
+}
+
+.quote-name {
+  margin-top: 30px;
+}
+
+.quote-occupation {
+  font-weight: 400;
+}
+
+.quote-open, .quote-close {
+  position: absolute;
+  width: 80px;
+  opacity: 0.6;
+  @media(max-width: $screen-sm-max){
+    width: 35px;
+  }
+}
+
+.quote-wrap {
+  position: relative;
+  @media(min-width: $screen-sm-min){
+    display: table-cell;
+    vertical-align: middle;
+    height: 300px;
+  }
+  @media(max-width: $screen-xs-max) {
+    margin-top: 30px;
+  }
+}
+
+.quote-open {
+  top: 0;
+  left: 0;
+}
+
+.quote-close {
+  bottom: 0;
+  right: 0;
+}
+
+.quote-content {
+  font-size:20px;
+  color: #3d3d3d;
+  line-height: 40px;
+  text-align: center;
+  padding: 0px 100px;
+  @media(max-width: $screen-sm-max){
+    padding: 0 25px;
+  }
+}
+
+.feature-clients {
+  text-align: center;
+  img {
+    max-width: 200px;
+  }
+}
+
+.feature-contact {
+  @include standard-btn;
+}
+
+.feature-map {
+  height: 700px;
+  background: #e5e5e5;
+}
+
+.feature-contact-form {
+  padding: 110px 80px 0px 60px;
+  @media(max-width: $screen-xs-max){
+    padding-bottom: 150px;
+  }
+}
+
+.feature-split {
+  position: relative;
+
+  .image-container {
+    height: 800px;
+  }
+
+  .image-overlay {
+    display: table;
+    table-layout: fixed;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .image-overlay-inner {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 100px;
+    padding-right: 100px;
+    @media(max-width: $screen-sm-max){
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    h2, p {
+      color: #fff;
+    }
+  }
+}
+
+.split-image {
+  background: center center no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.split-content-block {
+  text-align: center;
+  height: 400px;
+  padding: 80px 40px 0;
+  border: 1px solid #f3f3f3;
+  transition: 0.2s ease-in-out;
+  i {
+    color: #6e6e6e;
+    transition: 0.3s ease-in-out;
+  }
+  &:hover {
+    background: #f3f3f3;
+    i {
+      color: #000;
+    }
+   }
+  @media(max-width: $screen-xs-max){
+    height: auto;
+    padding: 60px 30px 30px;
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  4.  Navigation
+/*-----------------------------------------------------------------------------------*/
+// Generic styling 
+.navbar {
+
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  padding: 60px 0 40px;
+  @media (max-width: $screen-xs-max){
+    padding: 0px;
+  }
+  img {
+  margin: 10px 0 5px;
+  }
+  background: #fff;
+}
+
+.nav > li > a:hover {
+  background-color: $main-grey; 
+}
+
+.nav > li > a:focus {
+  background-color: #fff;
+}
+
+.nav .open > a, .nav .open > a:hover {
+  background-color: $main-grey;
+}
+
+.navbar-nav { 
+  li {
+    text-transform: uppercase;
+    padding: 5px 1px 0px;
+    a {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #000;
+    }
+  }
+} 
+
+.dropdown-menu li {
+  padding: 0px;
+  @media(max-width: $screen-xs-max){
+    text-align: center;
+  }
+}
+
+.navbar-toggle {
+  width: 50px;
+} 
+
+// Push down content for non-image headers
+.navbar-buffer {
+  height: 180px;
+  @media(max-width: $screen-xs-max){
+    height: 120px;
+  }
+}
+
+/* Main navbar */
+.navbar-custom {
+
+  // apply background colour to collapsed menu
+  .collapsing, .in {background-color: #fff;}
+  .collapsing ul li a, .in ul li a {color: #000!important;}
+  .collapsing ul li a:hover, .in ul li a:hover {color: #404040!important;}
+  
+  // overide Bootstraps 15px padding, as not used on main navbar*/
+  .navbar-collapse {
+    padding: 0px;
+    @media (max-width: $screen-xs-max){
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .navbar-toggle {
+    float: none;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0px;
+  }
+
+  // wrap dropdown menu on xs screens
+  .dropdown-menu > li > a {
+    @media(max-width: $screen-xs-max){
+      white-space: normal;
+    }
+  }
+}
+
+/* Navbar collapse on large screens */
+.navbar-custom-collapse {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-toggle {
+    display: block;
+    float: none;
+    top: 10px;
+    margin: auto;
+    @media (min-width: $screen-xs-max){
+      float: right;
+    }
+  }
+  .navbar-collapse.collapse {
+    display: none!important;
+  }
+  .navbar-nav {
+    float: none!important;
+  }
+  .navbar-nav>li {
+    float: none;
+    clear: both;
+  }
+  .navbar-collapse.collapse.in{
+    display:block !important;
+  }
+  .dropdown-menu {
+    text-align: center;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
+/* Mega menu */
+.megamenu > .dropdown-menu {
+  @media(min-width: $screen-sm-min){
+    min-width:500px;
+  }
+  @media(min-width: $screen-md-min){
+    min-width: 600px;
+  }
+  .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5; 
+  }
+  a {
+    display: block;
+    padding: 3px 10px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: #333333;
+    &:hover {
+      text-decoration: none;
+      color: #262626;
+      background-color: #f5f5f5;
+    }
+  } 
+  h3 {
+    font-size: 20px;
+    padding: 10px;
+  }
+} 
+
+/*-----------------------------------------------------------------------------------*/
+/*  5.  Comments
+/*-----------------------------------------------------------------------------------*/
+
+.comments-section {
+  margin-bottom: 30px;
+
+  p {
+    line-height: 30px;
+  }
+
+  img {
+    margin-top: 3px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #c2c2c2;
+    border-radius: 0px;
+    padding: 10px;
+  }
+
+  @include standard-btn;
+
+}
+
+.comment-author {
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: $main-accent;
+}
+
+.comment-time {
+  display: inline-block;
+  font-style: italic;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.comment-content {
+  padding-bottom: 30px;
+}
+
+.comment-post-reply .comment-content,
+.comment-post-reply .comment-author {
+  color: #000000;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  6.  Portfolio
+/*-----------------------------------------------------------------------------------*/
+
+/* Portfolio Gallery */
+.portfolio-container-wide {
+  margin-bottom: -30px;
+}
+
+.portfolio-grid {
+  @media (max-width: $screen-xs-max){
+    @include xs-fullwidth;
+  }
+}
+
+.portfolio-grid-image {
+  background-size: cover;
+  background-position: center center;
+  height: 350px;
+  @media(min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+    height: 250px;
+  }
+  @media(min-width: $screen-md-min) and (max-width: $screen-md-max){
+    height: 320px;
+  }
+}
+
+.portfolio-grid-image-tall {
+  background-size: cover;
+  background-position: center center;
+  height: 500px;
+  @media(min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+    height: 350px;
+  }
+  @media(min-width: $screen-md-min) and (max-width: $screen-md-max){
+    height: 420px;
+  }
+}
+
+.grid-caption-wrap {
+  margin-top: 5px;
+  p { 
+    margin: 0; 
+  }
+  .grid-caption-title {
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #000;
+  }
+  .grid-caption-category {
+    font-size: 14px;
+    margin-top: -3px;
+    color: lighten($main-accent, 10%);
+  }
+  @media(max-width: $screen-xs-max){
+    padding: 0 10px 20px;
+  }
+}
+
+.portfolio-parallax {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  @media(max-width: $screen-xs-max){
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 90%;
+    text-align: center;
+  }
+  p {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 10px; 
+    background: rgba(#000, .3); 
+    cursor: pointer;
+  }
+  a {
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+    display: inline;
+  }
+  .heart {
+    &:hover .fa-heart-o, .fa-heart {
+      display: none;
+    }
+    &:hover .fa-heart {
+      display: inline;
+    }
+    a {
+      color: #feb5e8;
+    }
+  }
+}
+
+.portfolio-lightbox-item {
+  height: 200px;
+  @media(max-width: $screen-xs-max){
+    height: 300px;
+  }
+  @media(min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+    height: 120px;
+  }
+  @media(min-width: $screen-md-min) and (max-width: $screen-md-max){
+    height: 150px;
+  }
+  background-size: cover;
+  background-position: center center;
+  &:hover {
+    .overlay-magnify {
+      opacity: 0.5;
+      transition: 0.1s ease-in-out;
+    }
+  }
+}
+
+.overlay-magnify {
+  display: inline;
+  position:relative;
+  left: 20px;
+  font-size: 50px;
+  color: #fff;
+  transition: 0.1s ease-out;
+  opacity: 0;
+}
+
+/* Portfolio Item */
+.portfolio-details-text {
+  h4{
+    font-family: $font-heading-main;
+    padding-bottom: 10px;
+  }
+  margin-bottom: 30px;
+  line-height: 30px;
+  text-align: left;
+}
+
+.portfolio-details-wide {
+  margin-top: 50px;
+}
+
+.portfolio-meta-container {
+  padding-bottom: 30px;
+}
+
+.portfolio-meta {
+  display: table;
+  width: 100%;
+
+  a:hover {
+    color: $main-accent;
+  }
+}
+
+.portfolio-meta-title {
+  display: table-cell;
+  width: 33%;
+}
+
+.portfolio-social-title {
+  display: table-cell;
+  width: 33%;
+}
+
+.portfolio-social a {
+
+  color: #000;
+  margin-right: 10px;
+
+  &:hover {
+    color: $main-accent;
+  }
+}
+
+.portfolio-image-list {
+  img {
+    margin-bottom: 30px;
+    @media(min-width: $screen-sm-min){
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.portfolio-nav {  
+  margin-top: 40px;
+  margin-bottom: 50px;
+  a {
+    color: darken($main-grey, 15%);
+    font-size: 20px;
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  7.  Blog
+/*-----------------------------------------------------------------------------------*/
+
+.blog-item {
+  margin-bottom: 10px;
+  p {
+    line-height: 30px;
+  }
+  @media (max-width: $screen-xs-max){
+    @include xs-fullwidth;
+  }
+}
+
+.blog-feature {
+  margin-bottom: 30px;
+}
+
+.blog-content {
+  margin-bottom: 40px;
+}
+
+.blog-list > .blog-thumb {
+  margin-bottom: 110px;
+}
+
+.blog-masonry > .blog-thumb {
+  margin-bottom: 100px;
+}
+
+.blog-thumb-title {
+  padding-top: 14px;
+  padding-bottom: 12px;
+  a {
+    font-family: $font-heading-main-light;
+    font-size: 21px;
+    letter-spacing: 2px;
+    &:hover {
+      color: $main-accent;
+    }
+  }
+}
+
+.blog-thumb-info {
+  padding-bottom: 15px;
+}
+
+.blog-thumb-info-item {
+  display: inline-block;
+  padding-right: 5px;
+  a {
+    letter-spacing: 2px;
+    font-size: 13px;
+    color: #666666;
+    padding: 0px;
+  }
+}
+
+.blog-thumb-info-item {
+  &::after {
+    content: "/";
+  }
+  &:last-child::after {
+    content: "";
+  }
+  i {
+    color: $main-accent;
+  }
+}
+
+.blog-thumb-more {
+  float: left;
+  margin-top: 15px;
+  a{
+    padding: 5px 10px;
+    border: 1px solid #000;
+    font-size: 15px;
+    letter-spacing: 2px;
+    transition: 0.1s ease-in-out;
+    &:hover {
+      background: $main-accent; 
+      border: 1px solid $main-accent;
+      color: #fff;
+    }
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  8.  Pages
+/*-----------------------------------------------------------------------------------*/
+
+/* About & Contact */
+.about-us, .contact-us {
+
+  margin-bottom: 50px;
+  @include standard-btn;
+
+}
+
+.about-us {
+  @media (max-width: $screen-xs-max) {
+    .main-image {
+      max-width: 250px;
+      margin-bottom: 30px;
+    }
+  }
+  @media (min-width: $screen-xs-max) and (max-width: $screen-sm-max){
+    .main-image {
+      margin-top: 90px;
+    }
+  }
+
+  @media (min-width: $screen-sm-max) and (max-width: $screen-md-max){
+    .main-image {
+      margin-top: 60px;
+    }
+  }
+  @media (min-width: $screen-lg-min){
+    .main-image {
+      margin-top: 10px;
+    }
+  }
+}
+
+.contact-us {
+
+  @media (max-width: $screen-xs-max) {
+    .main-image {
+      max-width: 250px;
+      margin-bottom: 30px;
+    }
+  }
+  @media (min-width: $screen-xs-max) and (max-width: $screen-sm-max){
+    .main-image {
+      margin-top: 120px;
+    }
+  }
+
+  @media (min-width: $screen-sm-max) and (max-width: $screen-md-max){
+    .main-image {
+      margin-top: 100px;
+    }
+  }
+  @media (min-width: $screen-lg-min){
+    .main-image {
+      margin-top: 70px;
+    }
+  }
+}
+
+/* 404 */
+.container-404 {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+
+/* Find Us */
+.findus-map-wrap {
+    @media (max-width: $screen-xs-max){
+     @include xs-fullwidth;
+   } 
+}
+.findus-map {
+  height: 500px;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.findus-details {
+  margin-top: 60px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.info-label {
+  margin-top: 30px;
+  p {
+    line-height: 22px;
+    letter-spacing: 3px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  @media (max-width: $screen-xs-max){
+    margin: 50px 0;
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  9.  Footer
+/*-----------------------------------------------------------------------------------*/
+.page-footer {
+  background: $main-grey;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  p,a {
+    font-size: 15px;
+  }
+}
+
+.footer-widget {
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 300px;
+  margin-bottom: 0px;
+  @media(max-width: $screen-xs-max){
+    min-height: auto;
+    margin-bottom: 60px;
+  }
+}
+
+.footer-company-details {
+  img {
+    margin-bottom: 35px;
+    @media(max-width: $screen-xs-max){
+      margin-top: 0px;
+    }
+  }
+  p {
+    line-height: 10px;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+}
+
+.footer-links li {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.instagram-gallery {
+  img {
+    padding: 1px;
+  }
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #d7d7d7;
+  p {
+    letter-spacing: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  10.  Headesive
+/*-----------------------------------------------------------------------------------*/
+.banner--clone {
+  display: none;
+}
+
+@media (min-width: $screen-lg-min) {
+
+  .banner--clone {
+
+    /* Required styles */
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: block;
+
+    /* Additional styles */
+    width: 100%;
+    box-shadow: 0 0 25px -10px rgba(0,0,0,0.30);
+    padding: 10px 0 14px;
+    background: #fff;
+
+    /* Translate -100% to move off screen */
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%);
+
+    /* Animations */
+    -webkit-transition: all 150ms ease-in-out;
+       -moz-transition: all 150ms ease-in-out;
+            transition: all 150ms ease-in-out;
+
+  }
+}
+
+.banner--stick {
+  -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+// Remove Headhesive for full screen collapsed navbar
+.navbar-custom-collapse.banner--clone {
+  display: none;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  11.  Flickity Carousel
+/*-----------------------------------------------------------------------------------*/
+
+.carousel-single, .carousel-wraparound {
+  .flickity-page-dots {
+    bottom: 3%;
+  }
+}
+
+.feature-slider {
+  padding-bottom: 30px;
+  .flickity-page-dots{
+    bottom: -30px;
+  }
+  &.carousel-nodots{
+    margin-bottom: -25px;
+  }
+}
+
+// Single item
+.carousel-single {
+  .carousel-cell { 
+    width: 100%; 
+  }
+}
+
+// Wraparound
+.carousel-wraparound {
+  .carousel-cell {
+    width: 50%;
+    margin-right: 2%;
+  }
+}
+
+// Show alternate dot colour
+.carousel-dot-alt {
+  .flickity-page-dots .dot {
+    background: #fff;
+  }
+}
+
+// Hide dots on all screens
+.carousel-nodots {
+  .flickity-page-dots {
+    display: none;
+  }
+}
+
+// Hide dots and arrows for xs screens
+.carousel-nobutt-xs {
+  @media (max-width: $screen-xs-max) {
+    margin-bottom: 20px;
+    .flickity-page-dots {
+      display: none;
+    }
+    .flickity-prev-next-button{
+      display: none;
+    }
+  }
+}
+
+// disable cursor hand
+.flickity-enabled.is-draggable .flickity-viewport{
+  cursor: auto;
+}
+/*-----------------------------------------------------------------------------------*/
+/*  12.  Hover Effect
+/*-----------------------------------------------------------------------------------*/
+
+.box {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  .overbox {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    transition: all 0.2s ease-out;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &:hover .overbox {
+    opacity: 0.9; 
+    transition: all 0.2s ease-out;
+  }
+  .overtext {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    color: #000;
+  }
+  .title {
+    font-size: 32px;
+    top: 38%;
+    letter-spacing: 1px;
+    font-family: $font-heading-sub;
+    text-transform: uppercase;
+    opacity: 0;
+    transition-duration: 0.1s;
+    transform: translateY(-50px);
+  }
+  &:hover .title,
+  &:focus .title {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-duration: 0.2s;
+  }
+  .tagline {
+    font-size: 23px;
+    top: 52%;
+    font-family: $font-standard;
+    color: #757575;
+    opacity: 0;
+    transition-duration: 0.1s;
+    transform: translateY(50px);
+  }
+  &:hover .tagline,
+  &:focus .tagline {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-duration: 0.2s;
+  }
+}
+
+.col-sm-6 .box .title {
+  @media(min-width: $screen-sm-min){
+    font-size: 30px;;
+    top: 32%;
+  }
+}
+
+.col-sm-6 .box .tagline {
+  @media(min-width: $screen-sm-min){
+    font-size: 20px;
+    top: 50%;
+  }
+}
+
+.col-md-3 .box .title {
+  @media(min-width: $screen-md-min){
+    font-size: 1.9vw;
+    top: 40%;
+  }
+}
+
+.col-md-3 .box .tagline {
+  @media(min-width: $screen-md-min){
+    font-size: 17px;
+    top: 50%;
+  }
+}
+
+.col-md-4 .box .title {
+  @media(min-width: $screen-md-min){
+    font-size: 2.5vw;
+    top: 35%;
+  }
+}
+
+.col-md-4 .box .tagline {
+  @media(min-width: $screen-md-min){
+    font-size: 1.6vw;
+    top: 48%;
+  }
+}
+
+.col-md-6 .box .title {
+  @media(min-width: $screen-md-min){
+    font-size: 2.5vw;
+    top: 37%;
+  }
+}
+
+.col-md-6 .box .tagline {
+  @media(min-width: $screen-md-min){
+    font-size: 1.8vw;
+    top: 50%;
+  }
+}
+
+.masonry-grid-item.col-sm-6 .box .title {
+  @media(min-width: $screen-sm-min){
+    font-size: 3vw;
+    top: 37%;
+  }
+}
+
+.masonry-grid-item.col-sm-3 .box .title {
+  @media(min-width: $screen-sm-min){
+    font-size: 2vw;
+    top: 35%;
+  }
+}
+
+
+.masonry-grid-item.col-sm-6 .box .tagline {
+  @media(min-width: $screen-sm-min){
+    font-size: 2vw;
+    top: 50%;
+  }
+}
+
+.masonry-grid-item.col-sm-3 .box .tagline {
+  @media(min-width: $screen-sm-min){
+    font-size: 1.5vw;
+    top: 50%;
+  }
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  13.  Isotope
+/*-----------------------------------------------------------------------------------*/
+
+.filter-button-group {
+  margin: 15px 0;
+  a {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4a4a4a;
+  }
+  .btn {
+    padding: 5px 20px;
+    border-radius: 0px;
+    border: 0px;
+  }
+  .btn:hover {
+    background-color: $main-accent;
+    color: #fff;
+  }
+}
+
+// Stack btn's for xs
+.no-float-xs > .btn-group > .btn {
+  @media(max-width: $screen-xs-max){
+    display: block;
+    float: none;
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  14.  Back to Top
+/*-----------------------------------------------------------------------------------*/
+
+#return-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(#84d1cf, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    border-radius: 35px;
+    display: none;
+    z-index: 99;
+    outline: none;
+}
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: rgba(#84d1cf, 0.9);
+}
+#return-to-top:hover i {
+    color: #fff;
+    top: 5px;
+}
